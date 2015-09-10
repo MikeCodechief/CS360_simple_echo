@@ -9,6 +9,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <fstream>
+#include <iostream>
 #include <string>
 
 using namespace std;

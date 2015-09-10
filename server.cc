@@ -12,21 +12,28 @@ Server::~Server() {
 
 void
 Server::run() {
+    cout << "run()" << endl;
     // create and run the server
     create();
     serve();
 }
 
 void
-Server::create() {
+Server::create() 
+{
+    cout << "create()" << endl;
 }
 
 void
-Server::close_socket() {
+Server::close_socket() 
+{
+    cout << "close_socket()" << endl;
 }
 
 void
-Server::serve() {
+Server::serve() 
+{
+    cout << "close_socket()" << endl;
     // setup client
     int client;
     struct sockaddr_in client_addr;
@@ -41,7 +48,9 @@ Server::serve() {
 }
 
 void
-Server::handle(int client) {
+Server::handle(int client) 
+{
+    cout << "handle()" << endl;
     // loop to handle all requests
     while (1) {
         // get a request
@@ -59,7 +68,9 @@ Server::handle(int client) {
 }
 
 string
-Server::get_request(int client) {
+Server::get_request(int client) 
+{
+    cout << "get_request" << endl;
     string request = "";
     // read until we get a newline
     while (request.find("\n") == string::npos) {
@@ -84,7 +95,9 @@ Server::get_request(int client) {
 }
 
 bool
-Server::send_response(int client, string response) {
+Server::send_response(int client, string response) 
+{
+    cout << "send_response" << endl;
     // prepare to send response
     const char* ptr = response.c_str();
     int nleft = response.length();

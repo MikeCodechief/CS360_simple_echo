@@ -35,11 +35,11 @@ Client::echo() {
     string line;
     
     // loop to handle user interface
-    //cout << "% " ;
+    cout << "% " ;
     while (getline(cin,line)) {
-        cout << "% " ;
+        
         // append a newline
-        line = pare_request(line);
+        line = parse_request(line);
         line += "\n";
         // send request
         bool success = send_request(line);
@@ -52,7 +52,7 @@ Client::echo() {
         // break if an error occurred
         if (not success)
             break;
-
+        cout << "% " ;
     }
     close_socket();
 }
@@ -111,7 +111,8 @@ Client::get_response() {
     cout << response;
     return true;
 }
-Client::translate_request(string &request)
+string
+Client::transform_reuqest(string &request)
 {
     if(request == "send")
     {
@@ -125,6 +126,7 @@ Client::translate_request(string &request)
     {
         return "reset";
     }
+    return "command not found";
 }
 
 string
@@ -197,8 +199,8 @@ Client::token_getter(string &request)
 string
 Client::parse_send(string &request)
 {
-    username = parse_username(request);
-    subject = parse_subject(request);
+    name = token_getter(request);// bet username
+    subject = token_getter(request);//get subeject
     cout << "-Type your message. End with a blank line-" << endl;
 
     string incoming_message;
@@ -207,11 +209,34 @@ Client::parse_send(string &request)
     {
         getline(cin,incoming_message);
         whole_message.append(incoming_message);
-        if(input_message.empty())
+        if(incoming_message.empty())
         {
             break;
         }
-        whole_message,append("\n");
+        whole_message.append("\n");
     }
     message = parse_message(whole_message);
+    int message_length = count_message_length(message);
+
+    return message;
+}
+
+int
+Client::parse_index(string &request)
+{
+    return atoi(token_getter(request).c_str());
+}
+
+int
+Client::count_message_length(string &msg)
+{
+    int total = 0;
+    for(int i =0; i < msg.length(); i++)
+    {
+        if(isalpha(msg[i]) || isdigit(msg[i]) || ispunct(msg[i]))
+        {
+            total++;
+        }
+    }
+    return total;
 }

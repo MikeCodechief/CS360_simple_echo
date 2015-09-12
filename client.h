@@ -19,7 +19,6 @@ class Client {
 public:
     Client();
     ~Client();
-
     void run();
 
 protected:
@@ -35,16 +34,19 @@ protected:
 
     //The function below are not from CS360
 
-    string username;
+    string name;
     string subject;
     string message;
     int index;
 
-    string translate_request(string &);
+    string transform_reuqest(string &);
     string parse_request(string &);
     string token_getter(string &);
     string parse_send(string &);
+    int parse_index(string &);
+    string parse_message(string &);
     string parse_list(string &);
+    int count_message_length(string &);
 /*
 *
 *

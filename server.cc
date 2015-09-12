@@ -12,7 +12,7 @@ Server::~Server() {
 
 void
 Server::run() {
-    cout << "run()" << endl;
+    //cout << "run()" << endl;
     // create and run the server
     create();
     serve();
@@ -21,19 +21,19 @@ Server::run() {
 void
 Server::create() 
 {
-    cout << "create()" << endl;
+    
 }
 
 void
 Server::close_socket() 
 {
-    cout << "close_socket()" << endl;
+
 }
 
 void
 Server::serve() 
 {
-    cout << "close_socket()" << endl;
+    cout << "server()" << endl;
     // setup client
     int client;
     struct sockaddr_in client_addr;
